@@ -1,5 +1,6 @@
 import 'package:aplay/controller/music_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -39,9 +40,27 @@ class MusicScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
+              Text(
+                'Your music',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const Gap(8),
               Obx(
-                ()=> ElevatedButton(
-                  onPressed: ()=>controller.toggelplay(),
+                ()=> Slider(
+                  min: 0,
+                  value: controller.currentPosition.value.inSeconds.toDouble(),
+                  onChanged: (value) {
+                    controller.seekTo(
+                      Duration(seconds: value.toInt()),
+                    );
+                  },
+                  max: controller.totalDuration.value.inSeconds.toDouble(),
+                ),
+              ),
+              const Gap(12),
+              Obx(
+                () => ElevatedButton(
+                  onPressed: () => controller.toggelplay(),
                   child: Text(controller.isPlay.value ? 'Pause' : 'Play'),
                 ),
               ),

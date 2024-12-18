@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^4.6.6
   just_audio: ^0.9.42
+  gap: ^3.0.1
   # audioplayers: ^6.1.0
 
 dev_dependencies:
