@@ -46,7 +46,7 @@ class MusicScreen extends StatelessWidget {
               ),
               const Gap(8),
               Obx(
-                ()=> Slider(
+                () => Slider(
                   min: 0,
                   value: controller.currentPosition.value.inSeconds.toDouble(),
                   onChanged: (value) {
@@ -58,11 +58,59 @@ class MusicScreen extends StatelessWidget {
                 ),
               ),
               const Gap(12),
-              Obx(
-                () => ElevatedButton(
-                  onPressed: () => controller.toggelplay(),
-                  child: Text(controller.isPlay.value ? 'Pause' : 'Play'),
-                ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: ()=>controller.forwordincremment(),
+                    icon: const Icon(Icons.arrow_back_ios),
+                  ),
+                  Obx(
+                    () => ElevatedButton(
+                      onPressed: () => controller.toggelplay(),
+                      child: Text(controller.isPlay.value ? 'Pause' : 'Play'),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: ()=>controller.backincremment(),
+                      icon: const Icon(Icons.arrow_forward_ios_outlined)),
+                ],
+              ),
+              const Gap(12),
+              Text(
+                'Click',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const Gap(8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'backword Click',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Obx(
+                    ()=> Text(
+                      controller.backwordClick.value.toString(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'forword Click',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Obx(
+                    ()=> Text(
+                      controller.forwordClick.value.toString(),
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
